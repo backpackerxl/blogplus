@@ -51,4 +51,4 @@
 
 > 如果你来到这里，说明前面工作你已完成。你以进入后台管理，后台管理主要是CRUD这个不必多说必须具备。后台除了可以控制博客的发布和保存之外还可以对博客进行设置分类、标签、描述信息。最主要的是它能控制，博客详情页面的，转载声明，是否推荐，是否允许评论，是否开启打赏，这些后台都可以控制。
 
-> 以上就是Blog项目使用手册，的所有类容。此次更新修复了社区分页问题最新稳定版本为[blog-0.0.3-SNAPSHOT.jar](https://gitee.com/backpackerxl/blogsutrl/blob/master/target/blog-0.0.3-SNAPSHOT.jar)，添加了几个超链接。
+> 以上就是Blog项目使用手册，的所有类容。此次更新修复了社区分页问题最新稳定版本为[blog-0.0.3-SNAPSHOT.jar](https://github.com/Backpackerxl/blogplus/blob/master/target/blog-0.0.3-SNAPSHOT.jar)，添加了几个超链接。
