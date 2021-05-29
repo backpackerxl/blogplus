@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title th:replace="${title}"></title>
+        <link rel="shortcut icon" th:href="@{/images/logo.ico}" />
+        <link rel="stylesheet" th:href="@{/css/index.css}">
+        <link rel="stylesheet" th:href="@{/node_modules/editor.md/css/editormd.min.css}">
+         <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+</head>
+
+<body>
+<nav th:fragment="menu(n)" class="ui inverted attached segment m-padded-tb-min m-shado-small" style="top: -20px;">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui teal header item m-paddend-font">后台管理</h2>
+            <a th:href="@{/admin/blogs}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><i class="home icon"></i>博客</a>
+            <a th:href="@{/admin/types}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><i class=" idea icon"></i>分类</a>
+            <a th:href="@{/admin/tags}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><i class=" tags icon"></i>标签</a>
+            <a th:href="@{/admin/groupcoment}" class="m-item item m-mobile-hide" th:classappend="${n==4} ? 'active'"><i class="comments outline icon"></i>评论</a>
+            <a th:href="@{/admin/views}" target="_blank" class="m-item item m-mobile-hide" th:classappend="${n==5} ? 'active'"><i class="paper plane outline icon"></i>动态</a>
+            <div class="right menu m-item item m-mobile-hide">
+                <div class="ui dropdown item">
+                    <div class="text">
+                        <img class="ui avatar image" th:src="@{${session.user.avater}}">
+                       <span th:text="${session.user.nickname}">Backpackerxl</span>
+                    </div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a th:href="@{/admin/logout}" class="item">注销</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu-toggle black icon button m-top-right m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+<!--bottom-->
+<footer th:fragment="footer" class="ui inverted vertical segment m-padded-tb-massive" style="bottom: -100px;">
+    <div class="ui center aligned container">
+        <div class="ui inverted divided stackable grid">
+            <div class="three wide column">
+                <div class="ui inverted link list">
+                    <div class="item">
+                        <img th:src="@{#{index.Chat}}" class="ui rounded image" style="width: 110px;">
+                    </div>
+                </div>
+            </div>
+            <div class="three wide column">
+                <h4 class="ui inverted header m-text-thin m-text-spaced ">最新博客</h4>
+                <div id="newblog-container">
+                    <div class="ui inverted link list" th:fragment="blogLists">
+                        <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="item m-text-thin m-text-spaced m-text-mini" th:each="blog : ${footer}" th:if="${blog.published}" th:text="${blog.title}">用户故事(User Story)</a>
+                        <!--/*-->
+                        <a href="#" class="item m-text-thin m-text-spaced m-text-mini">关于刻意练习的清单</a>
+                        <a href="#" class="item m-text-thin m-text-spaced m-text-mini">失败要趁早</a>
+                        <!--*/-->
+                    </div>
+                </div>
+            </div>
+            <div class="three wide column">
+                <h4 class="ui inverted header m-text-thin m-text-spaced">联系我</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item m-text-thin m-text-spaced m-text-mini" th:text="#{index.emails}">Email:946115360@qq.com</a>
+                    <a href="#" class="item m-text-thin m-text-spaced m-text-mini" th:text="#{index.QQ}">QQ:946115360</a>
+
+                </div>
+            </div>
+
+            <div class="seven wide column">
+                <h4 class="ui inverted header m-text-thin m-text-spaced " th:text="#{index.name}">Backpackerxl</h4>
+                <p class="m-text-thin m-text-spaced m-text-mini" th:text="#{index.conten}"></p>
+            </div>
+
+
+
+        </div>
+        <div class="ui inverted section divider"></div>
+
+        <p class="m-text-thin m-text-spaced m-text-mini" th:text="#{index.recode}"></p>
+    </div>
+    <script th:fragment="script">
+        $('#newblog-container').load(/*[[@{/footer/newblog}]]*/"/footer/newblog");
+    </script>
+</footer>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博客管理可视化</title>
+    <link rel="shortcut icon" th:href="@{/images/logo.ico}" />
+    <link rel="stylesheet" th:href="@{/css/diynamic.css}">
+
+     
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+    <header>
+        <h1>博客动态可视化</h1>
+        <div class="showTime">
+            
+        </div>
+    </header>
+    <script th:src="@{/js/flexible.js}"></script>
+    <script>
+        var t = null;
+        t = setTimeout(time, 1000); //开始运行
+        function time() {
+            clearTimeout(t); //清除定时器
+            var dt = new Date();
+            var y = dt.getFullYear();
+            var mt = dt.getMonth() + 1;
+            var day = dt.getDate();
+            var h = dt.getHours();
+            var m = dt.getMinutes();
+            var s = dt.getSeconds();
+            document.querySelector(".showTime").innerHTML = '当前时间：' + y + '年' + mt + "月" + day + "日" + "-" + h + "时" +
+                m + "分" + s + "秒";
+            t = setTimeout(time, 1000); //设定定时器循环运行
+
+        }
+    </script>
+    <!--页面主体部分-->
+    <section class="mainbox">
+        <div class="column">
+            <div class="panel bar">
+                <h2>分类使用统计</h2>
+                <div class="chart">
+
+                </div>
+               <div class="panel-footer"></div> 
+            </div>
+            <div class="panel line">
+                <h2>标签使用统计</h2>
+                <div class="chart">
+
+                </div>
+               <div class="panel-footer"></div> 
+            </div>
+        </div>
+        <div class="column">
+            <div class="no">
+                <div class="no-hd">
+                    <ul>
+                        <li th:text="${blogcount}">100</li>
+                        <li th:text="${commentcount}">50</li>
+                    </ul>
+                </div>
+                <div class="no-bd">
+                    <ul>
+                        <li>博客数量</li>
+                        <li>评论条数</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="map">
+                <div class="chart"></div>
+                <div class="map1"></div>
+                <div class="map2"></div>
+                <div class="map3"></div>
+            </div>
+          </div>
+        <div class="column"> 
+            <div class="panel bar1">
+            <h2>热评统计</h2>
+            <div class="chart">
+
+            </div>
+           <div class="panel-footer"></div> 
+        </div>
+        <div class="panel line1">
+            <h2>浏览次数统计</h2>
+            <div class="chart">
+            </div>
+           <div class="panel-footer"></div> 
+        </div>
+    </div>
+    </section>
+    <script th:src="@{/js/echarts.min.js}"></script>
+    <script th:src="@{/js/china.js}"></script>
+    <script th:src="@{/js/indexview.js}"></script>
+</body>
+
+</html>

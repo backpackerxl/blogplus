@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+ <link rel="shortcut icon" th:href="@{/images/logo.ico}" />
+ <link rel="stylesheet" th:href="@{/css/index.css}">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+ <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+ <meta charset="UTF-8">
+<title>错误</title>
+</head>
+<body>
+<div class="m-container-small">
+ <div class="ui error message">
+  <div class="ui container">
+   <h1>错误</h1>
+   <p>对不起，系统崩溃了</p>
+  </div>
+ </div>
+</div>
+ <div>
+ <div th:utext="'&lt;!--'" th:remove = "tag"></div>
+  <div th:utext="'Failed Request URL:' + ${url}" th:remove = "tag"></div>
+   <div th:utext="'Exception message :'+${exception.message}" th:remove = "tag"></div>
+   <ul th:remove="tag">
+   <li th:each="st : ${exception.stackTrace}" th:remove="tag"><span th:utext="${st}" th:remove = "tag"></span></li>
+   </ul>
+    <div th:utext="'--&gt;'" th:remove = "tag"></div>
+ </div>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我</title>
+    <link rel="shortcut icon" href="../static/images/logo.ico" />
+    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="../static/css/animate.css">
+     <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+</head>
+
+<body>
+    <!--daohan-->
+    <nav th:replace="_fragments :: menu(5)" class="ui inverted attached segment m-padded-tb-min m-shado-small" style="top: -20px;">
+        <div class="ui container">
+            <div class="ui inverted secondary stackable menu">
+                <h2 class="ui teal header item m-paddend-font">Blog</h2>
+                <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i>首页</p></a>
+                <a href="#" class="m-item item m-mobile-hide"><i class=" idea icon"></i>分类</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class=" tags icon"></i>标签</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class=" clone icon"></i>归档</a>
+                <a href="#" class="active m-item item m-mobile-hide"><i class=" info icon"></i>关于我</a>
+                <div class="right m-item item m-mobile-hide">
+                    <div class="ui icon input">
+                        <input type="text" placeholder="Search...">
+                        <i class=" search link icon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="ui menu-toggle black icon button m-top-right m-mobile-show animate__bounceIn">
+            <i class="sidebar icon"></i>
+        </a>
+    </nav>
+    <!--contaner-->
+    <div class="m-padded-tb-large m-container ">
+        <div class="ui container">
+
+            <div class="ui stackable grid">
+
+                    <div class="eleven wide column">
+                        <div class="ui attached segment" style=" border-radius: 5px;">
+                        <img src="https://picsum.photos/800/600" class="ui rounded image">
+                    </div>
+                </div>
+
+                <div class="five wide column animate__fadeInDownBig">
+                    <div class="ui top attached segment">
+                        <div class="ui header">关于我</div>
+
+                    </div>
+                    <div class="ui attached segment" >
+                        <p class="m-text" th:text="#{about.des}">
+                        </p>
+                        <p class="m-text" th:text="#{about.tag}">热爱编程，喜欢瞎折腾，做事执着，正在探索高效学习编程技术的方法.......</p>
+                    </div>
+                    <div class="ui attached segment m-container-small">
+                        <div class="ui orange basic label m-text" th:text="#{about.m}">编程</div>
+                        <div class="ui orange basic label m-text" th:text="#{about.a}">思考</div>
+                        <div class="ui orange basic label m-text" th:text="#{about.b}">刷视频</div>
+                        <div class="ui orange basic label m-text" th:text="#{about.c}">玩魔方</div>
+                    </div>
+                            <div class="ui attached segment">
+                                <div th:each="type : ${typeslist}" class="ui teal basic label m-text m-margin-top" th:text="${type.name}">Java</div>
+                                <!--/*-->
+                                <div class="ui teal basic label m-text m-margin-top">JavaScript</div>
+                                <div class="ui teal basic label m-text m-margin-top">Node</div>
+                                <div class="ui teal basic label m-text m-margin-top">MySql</div>
+                                <div class="ui teal basic label m-text m-margin-top">Vue</div>
+                                <!--*/-->
+                            </div>
+
+
+                    <div class="ui bottom attached segment">
+                        <a href="https://github.com/Backpackerxl" target="_blank" class="ui circular icon button"><i
+                                class="github icon"></i></a>
+                        <div class="ui weixin circular icon button"><i class="weixin icon"></i></div>
+                        <div class="ui qq circular icon button " data-content="946115360" data-position="bottom center">
+                            <i class="qq icon"></i></div>
+                    </div>
+                    <div class="ui weichartQR flowing popup transition hidden">
+                        <img src="../static/images/wechart.jpg" th:src="@{#{index.Chat}}" class="ui rounded image" style="width: 110px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!--bottom-->
+    <footer class="ui inverted vertical segment m-padded-tb-massive" style="bottom: -100px;">
+        <div class="ui center aligned container">
+            <div class="ui inverted divided stackable grid">
+                <div class="three wide column">
+                    <div class="ui inverted link list">
+                        <div class="item">
+                            <img th:src="@{#{index.Chat}}" class="ui rounded image" style="width: 110px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header m-text-thin m-text-spaced ">个人爱好</h4>
+                    <div id="newblog-container">
+                        <div class="ui inverted link list" th:fragment="blogLists">
+                            <a href="#" class="item m-text-thin m-text-spaced m-text-mini" th:text="#{about.like1}">用户故事(User Story)</a>
+
+                            <a href="#" class="item m-text-thin m-text-spaced m-text-mini" th:text="#{about.like2}">关于刻意练习的清单</a>
+                            <a href="#" class="item m-text-thin m-text-spaced m-text-mini" th:text="#{about.like3}">失败要趁早</a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header m-text-thin m-text-spaced">联系我</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item m-text-thin m-text-spaced m-text-mini" th:text="#{index.emails}">Email:946115360@qq.com</a>
+                        <a href="#" class="item m-text-thin m-text-spaced m-text-mini" th:text="#{index.QQ}">QQ:946115360</a>
+
+                    </div>
+                </div>
+
+                <div class="seven wide column">
+                    <h4 class="ui inverted header m-text-thin m-text-spaced " th:text="#{index.name}">Backpackerxl</h4>
+                    <p class="m-text-thin m-text-spaced m-text-mini" th:text="#{index.conten}"></p>
+                </div>
+
+
+
+            </div>
+            <div class="ui inverted section divider"></div>
+
+            <p class="m-text-thin m-text-spaced m-text-mini" th:text="#{index.recode}"></p>
+        </div>
+
+    </footer>
+
+    <script>
+        $('.menu-toggle').click(function () {
+            $('.m-item').toggleClass('m-mobile-hide');
+
+        });
+        $('.qq').popup();
+        $('.weixin').popup({
+            popup: $('.weichartQR.popup'),
+            on: 'hover',
+            position: 'bottom center'
+        });
+
+    </script>
+</body>
+
+</html>

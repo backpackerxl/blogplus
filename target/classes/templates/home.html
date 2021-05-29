@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博客社区</title>
+    <link rel="shortcut icon" th:href="@{images/logo.ico}" />
+    <link rel="stylesheet" th:href="@{css/index.css}">
+     <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+     
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <link rel="stylesheet" href="../static/css/index.css">
+
+</head>
+
+<body>
+    <!--daohan-->
+    <nav th:replace="_fragments :: menu(1)" class="ui inverted attached segment m-padded-tb-min m-shado-small" style="top: -20px;">
+        <div class="ui container">
+            <div class="ui inverted secondary stackable menu">
+                <h2 class="ui teal header item m-paddend-font">Blog</h2>
+                <a href="#" class="active m-item item m-mobile-hide" ><i class="home icon"></i>首页</p></a>
+                <a href="#" class="m-item item m-mobile-hide"><i class=" idea icon"></i>分类</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class=" tags icon"></i>标签</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class=" clone icon"></i>归档</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class=" info icon"></i>关于我</a>
+                <div class="right m-item item m-mobile-hide">
+                    <div class="ui icon input">
+                        <input type="text" placeholder="Search...">
+                        <i class=" search link icon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="ui menu-toggle black icon button m-top-right m-mobile-show">
+            <i class="sidebar icon"></i>
+        </a>
+    </nav>
+    <!--contaner-->
+    <div id="waypoint" class="m-padded-tb-large animate__bounceIn">
+        <div class="ui container">
+            <div class="ui stackable grid">
+                <!--leftlist-->
+                <div class="eleven wide column">
+                    <!--header-->
+                    <div class="ui top attached segment">
+                        <div class="ui middle aligned two column grid">
+                            <div class="column">
+                                <h3 class="ui teal header">
+                                    博客
+                                </h3>
+                            </div>
+                            <div class="right aligned column">
+                                共 <h2 class="ui orange header m-inline-block m-text-thin" th:text="${page.totalElements}">14</h2> 篇
+                            </div>
+                        </div>
+                    </div>
+                    <!---content-->
+                    <div class="ui attached segment">
+                        <div class="ui padded vertical segment m-padded-tb-large" th:each="blog : ${page.content}" th:if="${blog.published}">
+                            <div class="ui middle aligned mobile reversed stackable grid">
+                                <div class="ten wide column" style="margin-left: 20px">
+                                    <h3 class="ui header"><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" style="color: #0a001f" ><span th:text="${blog.title}">你真的理解什么是财富自由吗？</span></a></h3>
+                                    <p class="m-text" th:text="|${blog.discreption}......|">
+                                        正确做一件事情的前提是清晰、正确的理解目标。而是事实，我们很多人很多时候根本没有对目标正确的定义，甚至根本从来没有想过，只是大家都那么做而已......</p>
+                                    <div class="ui stackable grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui mini horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://unsplash.it/100/100?image=1011"
+                                                       th:src="@{${blog.user.avater}}" class="ui avatar image">
+                                                    <div class="content"><a href="#" target="_blank" th:href="@{/about}" class="header" th:text="${blog.user.nickname}">Backpackerxl</a>
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i><span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2021-01-25</span>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="eye icon" ></i><span th:text="${blog.views}">100</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="#" th:href="@{/types/{id}(id=${blog.type.id})}" target="_blank"
+                                                class="ui teal basic label m-padded-tiny m-text-thin "><span th:text="${blog.type.name}">认知升级</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="five wide column">
+                                    <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">
+                                        <img src="https://unsplash.it/800/450?image=1011" th:src="@{${blog.firstImg}}" class="ui rounded image" style="box-shadow: 0 13px 27px -5px hsla(240, 30.1%, 28%, 0.25),0 8px 16px -8px hsla(0, 0%, 0%, 0.3),0 -6px 16px -6px hsla(0, 0%, 0%, 0.03);">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/*-->
+                        <div class="ui padded vertical segment m-padded-tb-large">
+                            <div class="ui mobile reversed stackable grid">
+                                <div class="eleven wide column">
+                                    <h3 class="ui header">你真的理解什么是财富自由吗？</h3>
+                                    <p class="m-text">
+                                        正确做一件事情的前提是清晰、正确的理解目标。而是事实，我们很多人很多时候根本没有对目标正确的定义，甚至根本从来没有想过，只是大家都那么做而已......</p>
+                                    <div class="ui stackable grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui mini horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://unsplash.it/100/100?image=1011"
+                                                        class="ui avatar image">
+                                                    <div class="content"><a href="#" class="header">Backpackerxl</a>
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i>2021-01-25
+                                                </div>
+                                                <div class="item">
+                                                    <i class="eye icon"></i>100
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="#" target="_blank"
+                                                class="ui teal basic label m-padded-tiny m-text-thin ">认知升级</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="five wide column">
+                                    <a href="#" target="_blank">
+                                        <img src="https://unsplash.it/800/450?image=1011" class="ui rounded image">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui padded vertical segment m-padded-tb-large">
+
+                        <div class="ui padded vertical segment m-padded-tb-large">
+                            <div class="ui mobile reversed stackable grid">
+                                <div class="eleven wide column">
+                                    <h3 class="ui header">你真的理解什么是财富自由吗？</h3>
+                                    <p class="m-text">
+                                        正确做一件事情的前提是清晰、正确的理解目标。而是事实，我们很多人很多时候根本没有对目标正确的定义，甚至根本从来没有想过，只是大家都那么做而已......</p>
+                                    <div class="ui stackable grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui mini horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://unsplash.it/100/100?image=1011"
+                                                        class="ui avatar image">
+                                                    <div class="content"><a href="#" class="header">Backpackerxl</a>
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i>2021-01-25
+                                                </div>
+                                                <div class="item">
+                                                    <i class="eye icon"></i>100
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="#" target="_blank"
+                                                class="ui teal basic label m-padded-tiny m-text-thin ">认知升级</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="five wide column">
+                                    <a href="#" target="_blank">
+                                        <img src="https://unsplash.it/800/450?image=1011" class="ui rounded image">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui padded vertical segment m-padded-tb-large">
+                            <div class="ui mobile reversed stackable grid">
+                                <div class="eleven wide column">
+                                    <h3 class="ui header">你真的理解什么是财富自由吗？</h3>
+                                    <p class="m-text">
+                                        正确做一件事情的前提是清晰、正确的理解目标。而是事实，我们很多人很多时候根本没有对目标正确的定义，甚至根本从来没有想过，只是大家都那么做而已......</p>
+                                    <div class="ui stackable grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui mini horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://unsplash.it/100/100?image=1011"
+                                                        class="ui avatar image">
+                                                    <div class="content"><a href="#" class="header">Backpackerxl</a>
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i>2021-01-25
+                                                </div>
+                                                <div class="item">
+                                                    <i class="eye icon"></i>100
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="#" target="_blank"
+                                                class="ui teal basic label m-padded-tiny m-text-thin ">认知升级</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="five wide column">
+                                    <a href="#" target="_blank">
+                                        <img src="https://unsplash.it/800/450?image=1011" class="ui rounded image">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui padded vertical segment m-padded-tb-large">
+                            <div class="ui mobile reversed stackable grid">
+                                <div class="eleven wide column">
+                                    <h3 class="ui header">你真的理解什么是财富自由吗？</h3>
+                                    <p class="m-text">
+                                        正确做一件事情的前提是清晰、正确的理解目标。而是事实，我们很多人很多时候根本没有对目标正确的定义，甚至根本从来没有想过，只是大家都那么做而已......</p>
+                                    <div class="ui stackable grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui mini horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://unsplash.it/100/100?image=1011"
+                                                        class="ui avatar image">
+                                                    <div class="content"><a href="#" class="header">Backpackerxl</a>
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i>2021-01-25
+                                                </div>
+                                                <div class="item">
+                                                    <i class="eye icon"></i>100
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="#" target="_blank"
+                                                class="ui teal basic label m-padded-tiny m-text-thin ">认知升级</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="five wide column">
+                                    <a href="#" target="_blank">
+                                        <img src="https://unsplash.it/800/450?image=1011" class="ui rounded image">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--*/-->
+                    </div>
+
+                    <!--bottom-->
+                    <div class="ui bottom attached segment" th:if="${page.totalPages}>1">
+                        <div class="ui middle aligned two column grid">
+                            <div class="column">
+                                <a th:href="@{/community(page=${page.number}-1)}" th:unless="${page.first}" class="ui mini teal basic button">
+                                    上一页
+                                </a>
+                            </div>
+                            <div class="right aligned column">
+                                <a th:href="@{/community(page=${page.number}+1)}" th:unless="${page.last}" class="ui mini teal basic button">下一页</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--righttop-->
+                <div class="five wide column">
+                    <!--fenlei-->
+                    <div class="ui segments">
+                        <div class="ui secondary segment">
+                            <div class="ui two wide column  grid m-padded-tb m-spaned-xl">
+                                <div class="item">
+                                    <div class="aligned column">
+                                        <i class="idea icon"></i>分类
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="right aligned column">
+                                        <a href="#" th:href="@{types/-1}" target="_blank" class="m-right">more<i
+                                                class="angle double right icon "> </i></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ui fluid teal segment">
+                                <div class="ui fluid vertical menu ">
+                                    <a href="#" th:href="@{/types/{id}(id=${type.id})}" target="_blank" class="item m-spaned-xl" th:each="type : ${types}"><span th:text="${type.name}">学习日志</span></a>
+                                    <!--/*<div class="ui teal basic left pointing label m-right-add"><span th:text="${#arrays.length(type.blogs)}">13</span></div>*/-->
+                                    <!--/*-->
+                                    <a href="#" class="item m-spaned-xl">思考与感悟</a>
+                                    <div class="ui teal basic left pointing label m-right-add1">15</div>
+                                    <a href="#" class="item m-spaned-xl">清单</a>
+                                    <div class="ui teal basic left pointing label m-right-add2">11</div>
+                                    <a href="#" class="item m-spaned-xl">JavaScript</a>
+                                    <div class="ui teal basic left pointing label m-right-add3">17</div>
+                                    <a href="#" class="item m-spaned-xl">创业</a>
+                                    <div class="ui teal basic left pointing label m-right-add4">18</div>
+                                    <a href="#" class="item m-spaned-xl">认知升级</a>
+                                    <div class="ui teal basic left pointing label m-right-add5">19</div>
+                                    <!--*/-->
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--biaoqiqn-->
+                    <div class="ui segments m-margin-top-large">
+                        <div class="ui secondary segment">
+                            <div class="ui two wide column grid m-padded-tb m-spaned-xl">
+                                <div class="item">
+                                    <div class="aligned column">
+                                        <i class="tags icon"></i>标签
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="right aligned column">
+                                        <a href="#" th:href="@{tags/-1}" target="_blank" class="m-right">more<i
+                                                class="angle double right icon "></i></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ui fluid teal segment">
+
+                                <a href="#" target="_blank"
+                                   class="item ui teal basic left pointing label  m-magin-tb-tiny" th:href="@{/tags/{id}(id=${tag.id})}" th:each="tag : ${tags}"><span th:text="${tag.name}">方法<div class="detail" th:text="${#arrays.length(tag.blogs)}">23</div></span></a>
+                                    <!--/*-->
+                                <a href="#" target="_blank"
+                                    class="item ui teal basic left pointing label  m-magin-tb-tiny">方法 23</a>
+                                    <a href="#" target="_blank"
+                                    class="item ui teal basic left pointing label  m-magin-tb-tiny">方法 23</a>
+                                    <a href="#" target="_blank"
+                                    class="item ui teal basic left pointing label  m-magin-tb-tiny">方法 23</a>
+                                    <a href="#" target="_blank"
+                                    class="item ui teal basic left pointing label  m-magin-tb-tiny">方法 23</a>
+                                    <a href="#" target="_blank"
+                                    class="item ui teal basic left pointing label  m-magin-tb-tiny">方法 23</a>
+                                    <a href="#" target="_blank"
+                                    class="item ui teal basic left pointing label  m-magin-tb-tiny">方法 23</a>
+                                    <a href="#" target="_blank"
+                                    class="item ui teal basic left pointing label  m-magin-tb-tiny">方法 23</a>
+                                    <a href="#" target="_blank"
+                                    class="item ui teal basic left pointing label  m-magin-tb-tiny">方法 23</a>
+                                    <a href="#" target="_blank"
+                                    class="item ui teal basic left pointing label  m-magin-tb-tiny">方法 23</a>
+                                    <a href="#" target="_blank"
+                                    class="item ui teal basic left pointing label  m-magin-tb-tiny">方法 23</a>
+                                    <a href="#" target="_blank"
+                                    class="item ui teal basic left pointing label  m-magin-tb-tiny">方法 23</a>
+                                    <a href="#" target="_blank"
+                                    class="item ui teal basic left pointing label  m-magin-tb-tiny">方法 23</a>
+                                <!--*/-->
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <!--zuixintuijian-->
+                    <div class="ui segments m-margin-top-large">
+                        <div class="ui secondary segment ">
+                            <i class="bookmark icon"></i>最新推荐
+
+                        </div>
+                        <div class="ui fluid teal segment">
+                            <div class="ui segment" th:each="blog : ${recommendBlogs}" th:if="${blog.published}">
+                                <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-color-text"><span th:text="${blog.title}">用户故事(User Story)</span></a>
+                            </div>
+                        </div>
+
+                        <!--/*-->
+                        <div class="ui  segment">
+                            <a href="#" target="_blank" class="m-color-text">用户故事(User Story)</a>
+                        </div>
+                        <div class="ui  segment">
+                            <a href="#" target="_blank" class="m-color-text">用户故事(User Story)</a>
+                        </div>
+                        <div class="ui  segment">
+                            <a href="#" target="_blank" class="m-color-text">用户故事(User Story)</a>
+                        </div>
+                        <div class="ui  segment">
+                            <a href="#" target="_blank" class="m-color-text">用户故事(User Story)</a>
+                        </div>
+                        <div class="ui  segment">
+                            <a href="#" target="_blank" class="m-color-text">用户故事(User Story)</a>
+                        </div>
+                        <div class="ui  segment">
+                            <a href="#" target="_blank" class="m-color-text">用户故事(User Story)</a>
+                        </div>
+                        <div class="ui  segment">
+                            <a href="#" target="_blank" class="m-color-text">用户故事(User Story)</a>
+                        </div>
+                        <!--*/-->
+                    </div>
+
+                    <!--erweima-->
+                    <h4 class="ui horizontal divider header m-margin-top-large">扫码关注我</h4>
+                    <div class="ui centered card " style="width: 110px;">
+                        <img th:src="@{images/wechart.jpg}" class="ui rounded image">
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+    </div>
+    <div id="toolbar" class="m-padded m-fixed m-right-bootm" style="display: none;">
+        <div class="ui vertical icon buttons ">
+          <button class="ui button"><i class="weixin icon"></i></button>
+          <button id="toTop" class="ui icon button"><i class="chevron up icon"></i></button>
+        </div>
+      </div>
+     
+      <div id="qrcode" class="ui weichartqr flowing popup transition hidden" style="width:130px;">
+       
+      </div>
+    <br>
+    <br>
+
+    <!--bottom-->
+    <footer th:replace="_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive" style="bottom: -100px;">
+        <div class="ui center aligned container">
+            <div class="ui inverted divided stackable grid">
+                <div class="three wide column">
+                    <div class="ui inverted link list">
+                        <div class="item">
+                            <img th:src="@{images/wechart.jpg}" class="ui rounded image" style="width: 110px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header m-text-thin m-text-spaced ">最新博客</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item m-text-thin m-text-spaced m-text-mini">用户故事(User Story)</a>
+                        <a href="#" class="item m-text-thin m-text-spaced m-text-mini">关于刻意练习的清单</a>
+                        <a href="#" class="item m-text-thin m-text-spaced m-text-mini">失败要趁早</a>
+                    </div>
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header m-text-thin m-text-spaced">联系我</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item m-text-thin m-text-spaced m-text-mini">Email:946115360@qq.com</a>
+                        <a href="#" class="item m-text-thin m-text-spaced m-text-mini">QQ:946115360</a>
+
+                    </div>
+                </div>
+                <div class="seven wide column">
+                    <h4 class="ui inverted header m-text-thin m-text-spaced ">Backpackerxl</h4>
+                    <p class="m-text-thin m-text-spaced m-text-mini">这是一个个人博客项目，本着对编程负责的态度写出来的，希望大家喜欢。</p>
+                </div>
+
+            </div>
+            <div class="ui inverted section divider"></div>
+
+            <p class="m-text-thin m-text-spaced m-text-mini">Copyright@2020-2021 BackpackerxlDesigned by
+                Backpackerxl</p>
+        </div>
+
+    </footer>
+    <!--/*/<th:block th:replace="_fragments :: script">/*/-->
+    <script th:src="@{node_modules/tocbot/dist/tocbot.min.js}"></script>
+    <script th:src="@{js/qrcode.min.js}"></script>
+    <script th:src="@{node_modules/jquery.scrollto/jquery.scrollTo.min.js}"></script>
+    <script th:src="@{node_modules/waypoints/lib/jquery.waypoints.min.js}"></script>
+    <script th:src="@{js/main.js}"></script>
+    <!--/*/</th:block>/*/-->
+    <script th:inline="javascript">
+        var serurl = /*[[#{blog.url}]]*/"";
+        var url = "community";
+        var qrcode = new QRCode("qrcode", {
+            text: serurl+url,
+            width: 110,
+            height: 110,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+    </script>
+</body>
+</html>
