@@ -22,7 +22,7 @@
 | -------------- | ------------------------------------------------------------ |
 | index.email    | 个人邮箱地址                                                 |
 | index.QQ       | 个人QQ号。                                                   |
-| index.Chat     | 个人微信二维码，注意这个是图片比较特殊，需要把你的图片放在这个路径下（target\classes\static\images）名字可以自定义，路径格式如下（/images/xxx.jpg）。 |
+| index.Chat     | 个人微信二维码，注意这个是图片比较特殊，需要把你的图片放在这个路径下（src/resource/static/images）名字可以自定义，路径格式如下（/images/xxx.jpg）。 |
 | index.pay      | 打赏的付费二维码，配置方式跟index.Chat相同。                 |
 | index.name     | 这是博客底部的昵称。                                         |
 | index.recode   | 这是备案信息，如果项目上线可以填上，不上线请自便。           |
@@ -42,8 +42,8 @@
 |index.project2 | 推荐项目二|
 |index.project3 | 推荐项目三|
 |index.projecturl1 | 推荐项目在线地址一|
-|index.projecturl2 | 推荐项目在线地址一|
-|index.projecturl3 | 推荐项目在线地址一|
+|index.projecturl2 | 推荐项目在线地址二 |
+|index.projecturl3 | 推荐项目在线地址三 |
 
 
 
